@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace SocialNetwork
+namespace DataAccess
 {
     public class User : IdentityUser
     {
