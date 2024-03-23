@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DataAccess;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Views.ViewModels;
@@ -27,6 +27,14 @@ namespace SocialNetwork.Controllers
             return View("Home/Register");
         }
 
+        [HttpGet]
+        [Route("RegisterPart2")]
+        public IActionResult RegisterPart2(RegisterViewModel model)
+        {
+            return View("RegisterPart2", model);
+        }
+
+
         [Route("Register")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -36,6 +44,7 @@ namespace SocialNetwork.Controllers
                 var user = _mapper.Map<User>(model);
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
@@ -49,13 +58,6 @@ namespace SocialNetwork.Controllers
                     }
                 }
             }
-            return View("RegisterPart2", model);
-        }
-
-        [HttpGet]
-        [Route("RegisterPart2")]
-        public IActionResult RegisterPart2(RegisterViewModel model)
-        {
             return View("RegisterPart2", model);
         }
     }

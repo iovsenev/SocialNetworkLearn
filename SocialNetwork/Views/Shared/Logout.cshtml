@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using DataAccess.Models;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form class="form-inline" asp-area="Identity"  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="enter_submit" asp-controller="AccountManager" asp-action="Logout">Logout</button>
+    </form>
+}

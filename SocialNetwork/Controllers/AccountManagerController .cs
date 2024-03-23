@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using DataAccess;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Views.ViewModels;
-using System;
 
 namespace SocialNetwork.Controllers
 {
@@ -14,7 +13,9 @@ namespace SocialNetwork.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AccountManagerController(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountManagerController(IMapper mapper, 
+            UserManager<User> userManager, 
+            SignInManager<User> signInManager)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -35,12 +36,12 @@ namespace SocialNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(model.Email);
 
-                var user = _mapper.Map<User>(model);
-
-                var result = await _signInManager.PasswordSignInAsync(user.Email,
-                    model.Password, 
-                    model.RememberMe, 
+                var result = await _signInManager.PasswordSignInAsync(
+                    user.Email,
+                    model.Password,
+                    model.RememberMe,
                     false);
                 if (result.Succeeded)
                 {
@@ -58,7 +59,7 @@ namespace SocialNetwork.Controllers
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
-            return View("Views/Home/Index.cshtml");
+            return RedirectToAction("Index","Home");
         }
 
         [Route("Logout")]
@@ -66,6 +67,7 @@ namespace SocialNetwork.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            Console.WriteLine("Logout method");
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
