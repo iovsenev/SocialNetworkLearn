@@ -1,6 +1,6 @@
 ﻿using DataAccess.Interfaces;
 
-namespace DataAccess
+namespace DataAccess.UoW
 {
     public interface IUnitOfWork : IDisposable
     {

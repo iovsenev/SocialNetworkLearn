@@ -1,4 +1,4 @@
-﻿namespace SocialNetwork.Views.ViewModels
+﻿namespace SocialNetwork.Models
 {
     public class StartViewModel
     {

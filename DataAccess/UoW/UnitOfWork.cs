@@ -1,9 +1,9 @@
-﻿
-using DataAccess.Contexts;
+﻿using DataAccess.Contexts;
 using DataAccess.Interfaces;
+using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace DataAccess
+namespace DataAccess.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {

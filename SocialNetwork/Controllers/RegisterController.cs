@@ -2,7 +2,7 @@
 using DataAccess.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SocialNetwork.Views.ViewModels;
+using SocialNetwork.Models;
 
 namespace SocialNetwork.Controllers
 {
@@ -48,7 +48,7 @@ namespace SocialNetwork.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserMainPage", "AccountManager");
                 }
                 else
                 {

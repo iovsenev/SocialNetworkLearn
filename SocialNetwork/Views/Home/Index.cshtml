@@ -1,20 +1,16 @@
 ﻿@using DataAccess
+@using SocialNetwork.Controllers
 ﻿@using Microsoft.AspNetCore.Identity;
 @using DataAccess.Models;
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager;
 
-@model SocialNetwork.Views.ViewModels.StartViewModel
+@model StartViewModel
 @{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if (SignInManager.IsSignedIn(User))
-{
-    <div>Hello @User.Identity.Name!</div>
-}
-else
-{
+
 <div class="row">
     <div class="side">
         <div class="center">
@@ -28,4 +24,3 @@ else
         <partial name="Register" model="Model.RegisterView"/>
     </div>
 </div>
-}

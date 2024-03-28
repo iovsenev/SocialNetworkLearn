@@ -2,7 +2,7 @@
     ViewData["Title"] = "Register";
 }
 
-@model SocialNetwork.Views.ViewModels.RegisterViewModel
+@model RegisterViewModel
 
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
@@ -35,7 +35,7 @@
 
             <select asp-for="Month"
                     class="form-control date_control"
-                    asp-items="Html.GetEnumSelectList<SocialNetwork.Views.ViewModels.Months>()"
+                    asp-items="Html.GetEnumSelectList<Months>()"
                     onchange="PopulateDays()"
                     ID="ddlMonth">
                 <option value="">@Model.Month</option>

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Models;
-using SocialNetwork.Views.ViewModels;
 using System.Diagnostics;
 
 namespace SocialNetwork.Controllers
@@ -15,9 +14,14 @@ namespace SocialNetwork.Controllers
         }
 
         [Route("")]
+        [Route("[controller]")]
         [Route("[controller]/[action]")]
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("UserMainPage", "AccountManager");
+            }
             return View(new StartViewModel());
         }
 

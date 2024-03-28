@@ -1,0 +1,57 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "UserPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="center">
+    <h1 class="h1">
+        @Model.User.GetFullName()
+    </h1>
+</div>
+<div class="row">
+
+    <div class="avatar_area">
+        <div class="avatar_area_img">
+            @if (Model.User.Image == null)
+            {
+            <img src="~/img/EmptyAvatar.jpg" alt="MainImg" />
+            }
+            else{
+            <img src="@Model.User.Image" alt="MainImg" />
+            }
+        </div>
+        <form>
+            <button class="enter_submit"
+                    type="submit"
+                    value="Редактировать данные"
+                    asp-controller="AccountManager"
+                    asp-action="Edit">
+                Редактировать данные
+            </button>
+        </form>
+    </div>
+    <div class="user_info">
+        <ul>
+            <li>
+                <p class="name">Статус: </p>
+                <p class="value">@Model.User.Status</p>
+            </li>
+            <li>
+                <p class="name">О себе: </p>
+                <p class="value">@Model.User.About</p>
+            </li>
+            <li>
+                <p class="name">Дата рождения: </p>
+                <p class="value">@Model.User.BirthDate.ToLongDateString()</p>
+            </li>
+            <li>
+                <p class="name">Email: </p>
+                <p class="value">@Model.User.Email</p>
+            </li>
+        </ul>
+        <div class="mrgn">
+            
+            <partial name="FriendList" model="Model" />
+        </div>
+    </div>
+</div>

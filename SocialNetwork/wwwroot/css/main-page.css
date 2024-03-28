@@ -2,6 +2,7 @@
     -ms-flex: 40%;  /*IE10 */
     flex: 40%;
     padding: 20px;
+   
 }
 
 .container {
@@ -14,11 +15,13 @@
     padding: 20px;
 }
 
+
+
 .row {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     -ms-flex-wrap: wrap; /* IE10 */
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .footer {
@@ -151,3 +154,71 @@ input[type="checkbox"].input-validation-error {
     text-align:right;
     margin: 2%;
 }
+
+.avatar_area {
+    width: 40%;
+    min-width: 500px;
+    margin-right :20px;
+}
+
+.avatar_area_img {
+    width: 100%;
+    min-width: 500px;
+    height: auto;
+    min-height: 500px
+}
+
+.avatar_area img {
+    width: 100%;
+    min-width: 500px;
+    height: auto;
+    min-height: 500px
+}
+
+.user_info {
+    width : 56%;
+    margin: 20px;
+    margin-right : 0;
+    padding : 0;
+}
+
+    .user_info ul {
+        width : 100%;
+        list-style-type: none;
+        border-top-style: dotted;
+        border-bottom-style: dotted;
+        border-color: darkgrey;
+        padding: 16px 0;
+        margin:0;
+    }
+
+    .user_info ul li{
+        display: flex;
+        flex-wrap : nowrap;
+        margin : 8px 0px;
+    }
+    .name{
+        color : darkgray;
+        margin : 0 10px 0 0;
+    }
+    .value{
+        margin: 0;
+    }
+
+.friend-list {
+    border-bottom-style: dotted;
+    border-color: darkgrey;
+    margin: 0;
+    display: flex;
+    padding : 16px 0;
+}
+
+.friend-view{
+    background-color: white;
+    width: 30%;
+    text-align: center;
+    margin: 10px;
+}
+    .friend-view img{
+        width: 100%;
+    }

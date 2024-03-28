@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace SocialNetwork.Views.ViewModels
+namespace SocialNetwork.Models
 {
     public class LoginViewModel
     {
-        [Required]  
+        [Required]
         [EmailAddress]
         [Display(Name = "Email", Prompt = "Введите email")]
         public string Email { get; set; }
