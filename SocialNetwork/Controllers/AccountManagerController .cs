@@ -5,10 +5,8 @@ using DataAccess.UoW;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using SocialNetwork.Models;
 using static SocialNetwork.Mappers.UserFromModel;
-using static SocialNetwork.Helpers.ConsoleWriter;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SocialNetwork.Controllers
