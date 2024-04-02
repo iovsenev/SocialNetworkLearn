@@ -1,1 +1,2 @@
 dotnet ef migrations add [name] --project DataAccess --startup-project SocialNetwork
+dotnet ef database update --project DataAccess --startup-project SocialNetwork

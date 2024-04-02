@@ -11,8 +11,18 @@
             <div class="friend-view">
                 <img src="@user.Image" alt="@user.GetFullName()" />
                 <label>@user.GetFullName()</label>
-                <form asp-controller="AccountManager" asp-action="DeleteFriend" asp-route-id="@user.Id" method="post">
-                    <button type="submit" class="btn_submit">
+                <form asp-controller="AccountManager" 
+                    asp-action="Chat" 
+                    asp-route-id ="@user.Id" method="post">
+                    <button type="submit" class="btn_submit btn_friend-view">
+                        Отправить сообщение
+                    </button>
+                </form>
+                <form asp-controller="AccountManager" 
+                    asp-action="DeleteFriend" 
+                    asp-route-id="@user.Id" 
+                    method="post">
+                    <button type="submit" class="btn_submit btn_friend-view">
                         Удалить из друзей
                     </button>
                 </form>

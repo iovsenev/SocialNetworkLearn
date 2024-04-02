@@ -1,0 +1,38 @@
+﻿@model SocialNetwork.Models.ChatViewModel
+
+@{
+    ViewData["Title"] = "Чат с " + Model.RecipientUser.GetFullName();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="center">
+    <div>
+        <label asp-for="RecipientUser">@Model.RecipientUser.GetFullName()</label>
+    </div>
+    <div class="message-history">
+        @foreach (var message in Model.History)
+        {
+            <div class="msg">
+                <p class="msg-text">
+                    @message.Text
+                </p>
+                <p class="msg-date">@message.Date</p>
+            </div>
+        }
+    </div>
+    <div class="new-message">
+        <form asp-controller="AccountManager"
+              asp-action="NewMessage"
+              asp-route-id ="@Model.RecipientUser.Id"
+              asp-route-chat ="@Model.NewMessage.Message"
+              method="post">
+            <div class="input-msg">
+                <input asp-for="NewMessage.Message" class="form-control" />
+                <span asp-validation-for="NewMessage.Message" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Отправить" class="btn_submit"/>
+            </div>
+        </form>
+    </div>
+</div>

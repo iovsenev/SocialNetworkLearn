@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using SocialNetwork.Models;
 using static SocialNetwork.Mappers.UserFromModel;
 using static SocialNetwork.Helpers.ConsoleWriter;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SocialNetwork.Controllers
 {
@@ -153,14 +154,18 @@ namespace SocialNetwork.Controllers
             return View("UpdateUser", userView);
         }
 
-        [Authorize]
         [Route("UserList")]
         [HttpPost]
         public async Task<IActionResult> UserList(string search)
         {
-            var model = await CreateSearch(search);
+            if (User.Identity.IsAuthenticated)
+            {
+                var model = await CreateSearch(search);
 
-            return View("UserList", model);
+                return View("UserList", model);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         private async Task<SearchViewModel> CreateSearch(string search)
@@ -168,12 +173,19 @@ namespace SocialNetwork.Controllers
             var currentUser = User;
 
             var result = await _userManager.GetUserAsync(currentUser);
-
-            var list = _userManager.Users
-                .AsEnumerable()
-                .Where(x => x.GetFullName()
-                .Contains(search, StringComparison.CurrentCultureIgnoreCase))
-                .ToList();
+            var list = new List<User>();
+            if (search.IsNullOrEmpty())
+            {
+                list = _userManager.Users.AsEnumerable().ToList();
+            }
+            else
+            {
+                list = _userManager.Users
+                    .AsEnumerable()
+                    .Where(x => x.GetFullName()
+                    .Contains(search, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+            }
 
             var withFriend = await GetAllFriend();
 
@@ -235,6 +247,57 @@ namespace SocialNetwork.Controllers
             await repository.DeleteFriendAsync(user, friend);
 
             return RedirectToAction("UserMainPage", "AccountManager");
+        }
+
+        [Authorize]
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> Chat(string id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var recipientUser = await _userManager.FindByIdAsync(id);
+            var repository = _unitOfWork.GetRepository<Message>() as MessageRepository;
+
+            var history = await repository.GetMessages(user, recipientUser);
+
+            var model = new ChatViewModel()
+            {
+                User = user,
+                RecipientUser = recipientUser,
+                History = history
+            };
+
+            return View(model);
+        }
+
+        [Authorize]
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> NewMessage(string id, ChatViewModel chat)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var recipientUser = await _userManager.FindByIdAsync(id);
+            var repository = _unitOfWork.GetRepository<Message>() as MessageRepository;
+            var entity = new Message()
+            {
+                Date = DateTime.Now,
+                SenderId = user.Id,
+                RecipientId = recipientUser.Id,
+                Text = chat.NewMessage.Message
+            };
+
+            await repository.CreateAsync(entity);
+
+            var history = await repository.GetMessages(user, recipientUser);
+
+            var model = new ChatViewModel()
+            {
+                User = user,
+                RecipientUser = recipientUser,
+                History = history
+            };
+
+            return View("Chat", model);
         }
     }
 }

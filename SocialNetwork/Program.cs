@@ -17,6 +17,7 @@ builder.Services
     options.UseSqlServer(connectionString))
     .AddUnitOfWork()
     .AddCustomRepository<Friend, FriendRepository>()
+    .AddCustomRepository<Message, MessageRepository>()
     .AddIdentity<User, IdentityRole>(options =>
         {
             options.Password.RequiredLength = 4;

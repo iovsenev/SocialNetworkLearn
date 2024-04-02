@@ -7,16 +7,41 @@
 
         @foreach (var user in @Model.UserList)
         {
-            <div>
-                <label>@user.GetFullName()</label>
-                @if (!@user.IsFriendWithCurrent)
-                {
-                    <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post">
-                        <button type="submit" class="btn btn-sm btn-primary">
-                            Добавить в друзья
-                        </button>
-                    </form>
-                }
+            <div class="row">
+                <div class="image-avatar">
+                    <img src="@user.Image" alt="@user.GetFullName()" />
+                </div>
+                <div class="user_info">
+                    <ul>
+                        <li>
+                            <p class="value">@user.GetFullName()</p>
+                        </li>
+                        <li>
+                            <p class="name">Статус: </p>
+                            <p class="value">@user.Status</p>
+                        </li>
+                        <li>
+                            <p class="name">О себе: </p>
+                            <p class="value">@user.About</p>
+                        </li>
+                        <li>
+                            <p class="name">Дата рождения: </p>
+                            <p class="value">@user.BirthDate.ToLongDateString()</p>
+                        </li>
+                        <li>
+                            <p class="name">Email: </p>
+                            <p class="value">@user.Email</p>
+                        </li>
+                    </ul>
+                    @if (!@user.IsFriendWithCurrent)
+                    {
+                        <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                Добавить в друзья
+                            </button>
+                        </form>
+                    }
+                </div>
             </div>
         }
     }

@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Fondamento-Regular
+font link: https://fonts.google.com/specimen/Fondamento
+font author: Astigmatic
+font author site: http://www.astigmatic.com/
+
+
+icon designer: Angela Angelini
+icon designer link: /angelini.ngl
+        
+{"bg":"#EBFBFA","icon-gradient-0":"#41E296","icon-gradient-1":"#00C4EE","font":"#08403F","slogan":"#1c5453"}
+      

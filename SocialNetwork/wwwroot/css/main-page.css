@@ -7,6 +7,8 @@
 
 .container {
     width: 1800px;
+    max-height: 90%;
+    overflow-x : hidden;
 }
 
 .side {
@@ -25,6 +27,7 @@
 }
 
 .footer {
+    position: unset;
     padding: 20px;
     text-align: center;
     background-color: #edeef0;
@@ -86,10 +89,13 @@
 
 .background-main {
     background-color: #edeef0;
+    display: block;
+    height : 90vh;
 }
 
 .background-white {
     background-color: white;
+    
 }
 
 .text-color-gray {
@@ -197,10 +203,12 @@ input[type="checkbox"].input-validation-error {
         flex-wrap : nowrap;
         margin : 8px 0px;
     }
+
     .name{
         color : darkgray;
         margin : 0 10px 0 0;
     }
+
     .value{
         margin: 0;
     }
@@ -214,11 +222,76 @@ input[type="checkbox"].input-validation-error {
 }
 
 .friend-view{
+    justify-content: center;
     background-color: white;
     width: 30%;
     text-align: center;
     margin: 10px;
 }
+
     .friend-view img{
         width: 100%;
+    }
+
+.btn_friend-view{
+    padding: 5px;
+    margin: 2px;
+}
+
+.message-history{
+    height : 100%;
+    max-height: 600px;
+    width : 100%;
+    border-style : dashed;
+    border-color : darkgrey;
+    background-color: white;
+    overflow-x : hidden;
+}
+
+.msg {
+    /*display: flex;*/
+    background-color: #04AA6D;
+    color : white;
+    max-width : 60%;
+    border-radius: 6px;
+    margin: 3px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.msg-text {
+    max-width: min-content;
+    text-align: start;
+    margin: 5px;
+}
+
+.msg-date{
+    text-align: end;
+    font-size: 60%;
+    margin: 5px;
+}
+
+.new-message form{
+    display : flex;
+    width  : 100%;
+    flex-wrap:nowrap;
+    align-items : center;
+    justify-content:space-between;
+}
+
+.input-msg{
+    width : 90%;
+}
+
+.logo{
+    width : 150px;
+}
+
+.image-avatar{
+    width:30%;
+}
+
+    .image-avatar img {
+        width: 100%;
+        height: auto;
     }

@@ -11,7 +11,7 @@ namespace DataAccess.Repositories
         {
         }
 
-        public List<Message> GetMessages(User sender, User recipient)
+        public async Task<List<Message>> GetMessages(User sender, User recipient)
         {
             Set.Include(x => x.Recipient);
             Set.Include(x => x.Sender);

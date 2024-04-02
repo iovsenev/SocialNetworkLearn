@@ -19,7 +19,7 @@ namespace DataAccess.Contexts
 
             builder.ApplyConfiguration<Friend>(new FriendConfiguration());
 
-            
+            builder.ApplyConfiguration<Message>(new MessageConfiguration());
                 
         }
     }
